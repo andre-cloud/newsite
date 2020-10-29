@@ -177,7 +177,7 @@ try:
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
     AWS_STORAGE_BUCKET_NAME = 'ascelpio-site'
 
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3BotoStorage'
 
     django_heroku.settings(config=locals(), staticfiles=False, logging=False)
 except ImportError as e:
