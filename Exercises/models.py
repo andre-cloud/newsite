@@ -16,7 +16,7 @@ class Materia(models.Model):
 
 
 class Argomento(models.Model):
-    materia = models.ForeignKey('Materia', on_delete=models.CASCADE)
+    materia = models.ForeignKey(Materia, on_delete=models.CASCADE, related_name='argomenti')
     argomento = models.CharField(max_length=250, help_text='Inserire il titolo dell\'argomento')
     descrizione = models.TextField(blank=True, help_text='Scrivere una minima descrizione per l\'argomento')
 
@@ -28,8 +28,7 @@ class Esercizio(models.Model):
 
     title = models.CharField(max_length=120, help_text='Inserire un titolo esplicativo')
     text = models.TextField(help_text='Scrivere il testo del problema. Se si è utilizzato il bot che sfrutta la tecnologia OCR controllare la correttezza del teso ricevuto.')
-    materia = models.ForeignKey('Materia', on_delete=models.CASCADE)
-    argomento = models.ForeignKey('Argomento', on_delete=models.CASCADE)
+    argomento = models.ForeignKey(Argomento, on_delete=models.CASCADE, related_name='esercizi')
     fig = models.ImageField(upload_to='img/', blank=True, null=True, help_text='Carica un\'eventuale immagine che completi il testo dell\'esercizio')
 
     grafico = models.ImageField(upload_to='graphs', blank=True, help_text='Caricare un file .png/.svg/.jpeg contenente l\'eventuale grafico necessario per la dimostrazione')
@@ -58,8 +57,7 @@ class Esercizio(models.Model):
 
 
 class Teoria(models.Model):
-    materia = models.ForeignKey('Materia', on_delete=models.CASCADE)
-    argomento = models.ForeignKey('Argomento', on_delete=models.CASCADE)
+    argomento = models.ForeignKey(Argomento, on_delete=models.CASCADE, related_name='teoria')
     text = models.TextField(help_text='Scrivere il testo del problema. Se si è utilizzato il bot che sfrutta la tecnologia OCR controllare la correttezza del teso ricevuto.')
     slug = models.SlugField(help_text='NON MODIFICARE')
     date = models.DateTimeField(auto_now=False, auto_now_add=True)
@@ -76,7 +74,7 @@ class Teoria(models.Model):
 
 
 class ImmaginiTeoria(models.Model):
-    teoria = models.ForeignKey(Teoria, on_delete=models.CASCADE)
+    teoria = models.ForeignKey(Teoria, on_delete=models.CASCADE, related_name='immagini')
     image = models.ImageField()
     didascalia = models.TextField(help_text='Inserire una breve didascalia per l\'immagine')
 

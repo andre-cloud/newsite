@@ -152,7 +152,7 @@
                 Sotto Argomenti
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                {% for argomento in object.argomento_set.all %}
+                {% for argomento in object.argomenti.all %}
                 <a class="dropdown-item" href='{{object}}/{{argomento}}'>{{ argomento }}</a>
                 {% endfor %}
               </div>

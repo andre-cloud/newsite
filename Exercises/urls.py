@@ -3,16 +3,14 @@ from . import views as post_views
 from django.views.generic import ListView, DetailView
 from .models import *
 
-class HomePageQuerySet(ListView):
-    def get_queryset(self):
-        return Materia.objects.all()
-
 class ExerciesView(ListView):
     def get_queryset(self):
-        return Esercizio.objects.argomento_set.filter(materia=self.kwargs['materia'], argomento=self.kwargs['argomento']).esercizio_set.all().order_by('-date')
+        print(Esercizio.objects.filter(argomento__argomento=self.kwargs['argomento'], argomento__materia__materia=self.kwargs['materia'], status='Published').order_by('-date'))
+        return Esercizio.objects.filter(argomento__argomento=self.kwargs['argomento'], argomento__materia__materia=self.kwargs['materia'], status='Published').order_by('-date')
 
 urlpatterns = [
-    path('', HomePageQuerySet.as_view(template_name='homepage.html'), name='homepagne'), #homepage
+    path('', ListView.as_view(
+        queryset=Materia.objects.all, template_name='homepage.html'), name='homepagne'), #homepage
 
     path('<str:materia>/<str:argomento>', ExerciesView.as_view(
         template_name="list.html", paginate_by = 33), name='list'), #lista degli esercizi
