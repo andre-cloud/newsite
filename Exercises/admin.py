@@ -4,7 +4,7 @@ from .models import *
 # Register your models here.
 
 def make_published(modeladmin, request, queryset):
-    queryset.update(status='Pubblished')
+    queryset.update(status='Published')
 make_published.short_description = "Pubblica gli esercizi selezionati"
 
 def make_draft(modeladmin, request, queryset):
@@ -21,9 +21,25 @@ class Admin(admin.ModelAdmin):
     actions = [make_published, make_draft]
 
     class Meta():
-        model = Exercise
+        model = Esercizio
 
-admin.site.register(Matematica, Admin)
-admin.site.register(Chimica_Generale_Analitica, Admin)
-admin.site.register(Chimica_Organica, Admin)
-admin.site.register(Chimica_Fisica, Admin)
+class AdminTry(admin.ModelAdmin):
+    pass
+
+class ImmaginiTeoriaAdmin(admin.TabularInline):
+        model = ImmaginiTeoria
+        extra = 3
+
+@admin.register(Teoria)
+class TeoriaAdmin(admin.ModelAdmin):
+    inlines = [ImmaginiTeoriaAdmin]
+    actions = [make_published, make_draft]
+
+    class Meta():
+        model = Teoria
+
+
+admin.site.register(Materia, AdminTry)
+admin.site.register(Argomento, AdminTry)
+admin.site.register(Esercizio, Admin)
+

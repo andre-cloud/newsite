@@ -55,23 +55,43 @@ h2{
       height: 255px;
     }
 
+    #esercizi {
+      min-height: 80vh;
+      padding-top: 100px;
+    }
+
 </style>
 
+<a href='#' class="btn btn-lg btn-secondary" id="scendi">Vai agli esercizi</a>
+
+<div class="container">
+  <h2>Parte teorica</h2>
+  {% for element in teoria %}
+  <p> {{ element.text }} </p>
+    {% for imag in element.immagini.all %}
+    <img src='{{ imag.image.url }}'>
+    <span>{{ imag.didascalia }}</span>
+    {% endfor %}
+  {% endfor %}
+
+</div>
 
 
-<div class="container" style="padding-top: 50px;">
+
+
+<div class="container" style="padding-top: 50px;" id='esercizi'>
   <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-3">  
-    {% for object in object_list %}
+    {% for esercizio in esercizi %}
       <div class="col" style='padding-bottom: 15px;'>
         <div class="card">
           <div class="card-body">
-            <a href="/{{ object.id }}/{{ object.slug }}/">
-              <h5 class='card-title' style='color: #568248; font-style: italic; padding: 5px; text-align: center;'>{{object.title}}</h5>
+            <a href="/{{ esercizio.id }}/{{ esercizio.slug }}/">
+              <h5 class='card-title' style='color: #568248; font-style: italic; padding: 5px; text-align: center;'>{{esercizio.title}}</h5>
             </a>
-            <p class="card-text">{{object.text|safe|linebreaks|truncatewords_html:10}}</p>
+            <p class="card-text">{{esercizio.text|safe|linebreaks|truncatewords_html:10}}</p>
           </div>
           <div class="card-footer" style="background-color: #b0ebc7; text-align: center; padding: 8px">
-            <span class="date">{{object.date}}</span>
+            <span class="date">{{esercizio.date}}</span>
           </div>
         </div>
       </div>
@@ -109,6 +129,17 @@ h2{
 </div>
 
 
+<script>
 
+$(function() {
+  $('#scendi').on('click', function(e) {
+    e.preventDefault();
+    $('html, body').animate({
+      scrollTop: $('#esercizi').offset().top
+    }, 300);
+  });
+});
+
+</script>
 
 {% endblock content %}

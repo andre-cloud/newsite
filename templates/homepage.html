@@ -136,33 +136,33 @@
 
 </div>
 
-<div class="scelta">
-  <div class="container">
-    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-3">
-      {% for nome, materia in materie %}
-        <div class="col" style='padding-bottom: 15px;'>
-          <div class="card">
-            <div class="card-header" style="background-color: #ffffff;">
-              <h5 class="card-title" style="text-align: center; ">{{ materia }}</h5>
-            </div>
-              <div class="card-body">
-              <p class="card-text" style="align-content: center;"> {{ materia.desc }} </p>
-            </div>
-            <div class="card-footer" style="background-color: #b0ebc7;">
-              <div class="dropdown" style="text-align: center;">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Sotto Argomenti
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  {% for key, value in materia.Argomento.choices %}
-                  <a class="dropdown-item" href="{{ nome }}/{{ key }}">{{ value }}</a>
-                  {% endfor %}
-                </div>
+    <div class="scelta">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-3">
+      {% for object in object_list %}
+      <div class="col" style='padding-bottom: 15px;'>
+        <div class="card">
+          <div class="card-body">
+            <h5 class='card-title' style='color: #568248; font-style: italic; padding: 5px; text-align: center;'>{{object.materia}}</h5>
+            <p class="card-text">{{object.descrizione|safe|linebreaks|truncatewords_html:10}}</p>
+          </div>
+          <div class="card-footer" style="background-color: #b0ebc7; text-align: center; padding: 8px">
+            <div class="dropdown" style="text-align: center;">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sotto Argomenti
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {% for argomento in object.argomenti.all %}
+                <a class="dropdown-item" href='{{object}}/{{argomento}}'>{{ argomento }}</a>
+                {% endfor %}
               </div>
             </div>
           </div>
         </div>
+      </div>
       {% endfor %}
+        </div>
+      </div>
     </div>
   </div>
 </div>
