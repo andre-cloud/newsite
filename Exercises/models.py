@@ -18,7 +18,6 @@ class Materia(models.Model):
 class Argomento(models.Model):
     materia = models.ForeignKey(Materia, on_delete=models.CASCADE, related_name='argomenti')
     argomento = models.CharField(max_length=250, help_text='Inserire il titolo dell\'argomento')
-    descrizione = models.TextField(blank=True, help_text='Scrivere una minima descrizione per l\'argomento')
 
     def __str__(self):
         return self.argomento

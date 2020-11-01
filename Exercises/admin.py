@@ -33,6 +33,7 @@ class ImmaginiTeoriaAdmin(admin.TabularInline):
 @admin.register(Teoria)
 class TeoriaAdmin(admin.ModelAdmin):
     inlines = [ImmaginiTeoriaAdmin]
+    actions = [make_published, make_draft]
 
     class Meta():
         model = Teoria
