@@ -21,7 +21,7 @@ urlpatterns = [
     path('', ListView.as_view(
         queryset=Materia.objects.all, template_name='homepage.html'), name='homepagne'), #homepage
 
-    path('<str:materia>/<str:argomento>', ExerciesView.as_view(), name='list'), #lista degli esercizi
+    path('<str:materia>/<str:argomento>', ExerciesView.as_view(paginate_by=12), name='list'), #lista degli esercizi
 
     path('<int:id>/<slug:slug>/', DetailView.as_view(
         queryset=Esercizio.objects, template_name="single.html"), name='single'), # Post singoli
