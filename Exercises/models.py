@@ -13,9 +13,15 @@ class Materia(models.Model):
 class Argomento(models.Model):
     materia = models.ForeignKey(Materia, on_delete=models.CASCADE, related_name='argomenti')
     argomento = models.CharField(max_length=250, help_text='Inserire il titolo dell\'argomento')
+    teoria = models.TextField()
 
     def __str__(self):
         return self.argomento
+
+class ImmaginiArgomento(models.Model):
+    teoria = models.ForeignKey(Argomento, on_delete=models.CASCADE, related_name='immagini')
+    image = models.ImageField(upload_to='img_theo/', help_text='Aggingi un\'immagine per rendere il testo più chiaro. Formati .png, .svg, .jpg')
+    didascalia = models.TextField(help_text='Inserire una breve didascalia per l\'immagine')
 
 
 class Esercizio(models.Model):
@@ -47,41 +53,3 @@ class Esercizio(models.Model):
         verbose_name = 'Esercizio'
         verbose_name_plural = 'Esercizi'
 
-
-
-
-class Teoria(models.Model):
-    argomento = models.ForeignKey(Argomento, on_delete=models.CASCADE, related_name='teoria')
-    text = models.TextField(help_text='Scrivere il testo del problema. Se si è utilizzato il bot che sfrutta la tecnologia OCR controllare la correttezza del teso ricevuto.')
-    slug = models.SlugField(help_text='NON MODIFICARE')
-    date = models.DateTimeField(auto_now=False, auto_now_add=True)
-    status = models.CharField(max_length=10, default="Draft", editable=False)
-
-
-    def __str__(self):
-        return str(self.argomento)
-
-    class Meta:
-        verbose_name = 'Teoria'
-        verbose_name_plural = 'Teoria'
-
-
-
-class ImmaginiTeoria(models.Model):
-    teoria = models.ForeignKey(Teoria, on_delete=models.CASCADE, related_name='immagini')
-    image = models.ImageField(upload_to='img_theo/')
-    didascalia = models.TextField(help_text='Inserire una breve didascalia per l\'immagine')
-
-
-
-
-
-# import sys, inspect
-
-# materie = inspect.getmembers(sys.modules[__name__], lambda member: inspect.isclass(member) and member.__module__ == __name__ and member.__name__ != 'Esercizio')
-
-# def get_modello(nome):
-#     for materia, modello in materie:
-#         if materia == nome:
-#             return modello
-#     raise Exception("Materia inesistente")

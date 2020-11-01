@@ -26,20 +26,20 @@ class Admin(admin.ModelAdmin):
 class AdminTry(admin.ModelAdmin):
     pass
 
-class ImmaginiTeoriaAdmin(admin.TabularInline):
-        model = ImmaginiTeoria
+class ImmaginiArgomentoAdmin(admin.TabularInline):
+        model = ImmaginiArgomento
         extra = 3
 
-@admin.register(Teoria)
-class TeoriaAdmin(admin.ModelAdmin):
-    inlines = [ImmaginiTeoriaAdmin]
-    actions = [make_published, make_draft]
+@admin.register(Argomento)
+class ArgomentoAdmin(admin.ModelAdmin):
+    inlines = [ImmaginiArgomentoAdmin]
+    list_display = ['argomento', 'materia']
+    list_filter = ['argomento', 'materia']
 
     class Meta():
-        model = Teoria
+        model = Argomento
 
 
 admin.site.register(Materia, AdminTry)
-admin.site.register(Argomento, AdminTry)
 admin.site.register(Esercizio, Admin)
 

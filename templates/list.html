@@ -66,13 +66,12 @@ h2{
 
 <div class="container">
   <h2>Parte teorica</h2>
-  {% for element in teoria %}
-  <p> {{ element.text }} </p>
-    {% for imag in element.immagini.all %}
+
+  <p> {{ teoria.teoria }} </p>
+    {% for imag in teoria.immagini.all %}
     <img src='{{ imag.image.url }}'>
     <span>{{ imag.didascalia }}</span>
     {% endfor %}
-  {% endfor %}
 
 </div>
 

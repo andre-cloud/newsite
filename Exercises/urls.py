@@ -10,7 +10,7 @@ class ExerciesView(ListView):
 
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
-        context['teoria'] = Teoria.objects.filter(argomento__argomento=self.kwargs['argomento'], argomento__materia__materia=self.kwargs['materia'], status='Published').prefetch_related('immagini') #lista degli elementi della teoria con relative immagini
+        context['teoria'] = Argomento.objects.get(argomento=self.kwargs['argomento'], materia__materia=self.kwargs['materia'])
         return context
 
     def get_queryset(self):
