@@ -1,11 +1,6 @@
 from django.db import models
 
 # Create your models here.
-from django.db import models
-from polymorphic.models import PolymorphicModel
-
-
-# Create your models here.
 
 class Materia(models.Model):
     materia = models.CharField(max_length=250, help_text='Inserire il titolo della materia')
