@@ -69,7 +69,7 @@ class Teoria(models.Model):
 
 class ImmaginiTeoria(models.Model):
     teoria = models.ForeignKey(Teoria, on_delete=models.CASCADE, related_name='immagini')
-    image = models.ImageField()
+    image = models.ImageField(upload_to='img_theo/')
     didascalia = models.TextField(help_text='Inserire una breve didascalia per l\'immagine')
 
 
