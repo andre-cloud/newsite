@@ -11,6 +11,8 @@ def make_draft(modeladmin, request, queryset):
     queryset.update(status='Draft')
 make_draft.short_description = "Non visualizzare gli esercizi selezionati"
 
+
+@admin.register(Esercizio)
 class Admin(admin.ModelAdmin):
     
     list_display = ['title', 'date', 'argomento', 'status']
@@ -23,8 +25,14 @@ class Admin(admin.ModelAdmin):
     class Meta():
         model = Esercizio
 
+@admin.register(Materia)
 class AdminTry(admin.ModelAdmin):
-    pass
+    list_display = ['materia']
+    list_filter = ['materia']
+    search_fields = ['materia', 'descrizione']
+
+
+
 
 class ImmaginiArgomentoAdmin(admin.TabularInline):
         model = ImmaginiArgomento
@@ -35,11 +43,12 @@ class ArgomentoAdmin(admin.ModelAdmin):
     inlines = [ImmaginiArgomentoAdmin]
     list_display = ['argomento', 'materia']
     list_filter = ['argomento', 'materia']
+    search_fields = ['argomento', 'materia']
 
     class Meta():
         model = Argomento
 
 
-admin.site.register(Materia, AdminTry)
-admin.site.register(Esercizio, Admin)
+
+
 

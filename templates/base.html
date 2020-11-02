@@ -60,50 +60,14 @@
     <!-- my CSS File -->
     <link rel="stylesheet" href='{% static "css/style.css" %}'>
 
-    <style>
-
-      body {
-        padding-top: 0px;
-      }
-
-      .navbar {
-        background-color: #c6ecd4;
-      }
-
-      .menu-chiaro {
-        background: #b2e0c3;
-      }
-
-      .navbar-brand {
-        display: table;
-        margin-left: 50%;
-        transform: translateX(-50%);
-        transition: all 300ms;
-      }
-
-      .navbar-expand {
-        display: table;
-        margin-left: 50%;
-        transform: translateX(-50%);
-        transition: all 300ms;
-      }
-
-      .menu-chiaro .navbar-brand {
-        margin-left: 0;
-        transform: translateX(0%) translateY(50%);
-      }
-
-      .menu-chiaro .navbar-expand {
-        margin-left: 100%;
-        transform: translateX(-100%) translateY(-50%);
-      }
-
-    </style>
+    <!-- FancyBox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     
   </head>
 <body>
-  <nav class="navbar navbar-light sticky-top" style="font-family: 'Alice'">
-    <div class="container" style="display:block">
+  <nav class="navbar navbar-light sticky-top">
+    <div class="container">
       <a class="navbar-brand" href="/"><img src="{% static 'imags/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"> Ascelpio</a>
       <div class="navbar-expand">
           <ul class="navbar-nav">
@@ -114,7 +78,7 @@
                 <a class="nav-link" href="/contatti/">Contattaci</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/admin/" style="white-space: nowrap">Log-in</a>
+                <a class="nav-link" href="/admin/">Log-in</a>
               </li>
           </ul>
       </div>

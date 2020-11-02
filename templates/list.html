@@ -3,92 +3,47 @@
 
 {% block content %}
 
-<style>
-
-html, body {
-      background-color: #E8FFF1;
-}
-
-.page-item.active .page-link{
-  background-color: green;
-  border-color: green;  
-}
-
-.testo{
-  font-size: medium;
-  padding: 10px;
-}
-
-h2{
-  font-size: 30px;
-  font-family: 'Alice';
-}
-
-.date {
-  font-size: 12px;
-
-}
-
-  .masthead {
-      margin-bottom: 2rem;
-    }
-
-    .masthead-brand {
-      margin-bottom: 0;
-      font-size: 35px;
-    }
-
-    .nav-masthead .nav-link {
-      /* padding: .25rem 0; */
-      font-weight: 700;
-      color: #000000;
-      background-color: transparent;
-      border-bottom: .25rem solid transparent;
-    }
-
-    .nav-masthead .nav-link + .nav-link {
-      margin-left: 1rem;
-    }
-
-    .card {
-      height: 255px;
-    }
-
-    #esercizi {
-      min-height: 80vh;
-      padding-top: 100px;
-    }
-
-</style>
-
-<a href='#' class="btn btn-lg btn-secondary" id="scendi">Vai agli esercizi</a>
+<div class='text-center btn-list_mia'>
+  <a href='#' class="btn btn-lg btn-secondary" id="scendi">Vai agli esercizi</a>
+</div>
 
 <div class="container">
   <h2>Parte teorica</h2>
 
   <p> {{ teoria.teoria }} </p>
+
+  <div class='lista-immagini'>
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-3">  
     {% for imag in teoria.immagini.all %}
-    <img src='{{ imag.image.url }}'>
-    <span>{{ imag.didascalia }}</span>
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <a data-fancybox='gallery' href='{{ imag.image.url }}'><img src='{{ imag.image.url }}'></a>
+            <span>{{ imag.didascalia }}</span>
+          </div>
+        </div>
+      </div>
     {% endfor %}
+  </div>
+</div>
 
 </div>
 
 
 
 
-<div class="container" style="padding-top: 50px;" id='esercizi'>
+<div class="container" id='esercizi'>
   <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-3">  
     {% for esercizio in esercizi %}
-      <div class="col" style='padding-bottom: 15px;'>
+      <div class="col">
         <div class="card">
           <div class="card-body">
             <a href="/{{ esercizio.id }}/{{ esercizio.slug }}/">
-              <h5 class='card-title' style='color: #568248; font-style: italic; padding: 5px; text-align: center;'>{{esercizio.title}}</h5>
+              <h5 class='card-title'>{{esercizio.title}}</h5>
             </a>
             <p class="card-text">{{esercizio.text|safe|linebreaks|truncatewords_html:10}}</p>
           </div>
-          <div class="card-footer" style="background-color: #b0ebc7; text-align: center; padding: 8px">
+          <div class="card-footer">
             <span class="date">{{esercizio.date}}</span>
           </div>
         </div>

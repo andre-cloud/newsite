@@ -9,6 +9,9 @@ class Materia(models.Model):
     def __str__(self):
         return self.materia
 
+    class Meta:
+        verbose_name = 'Materia'
+        verbose_name_plural = 'Materie'
 
 class Argomento(models.Model):
     materia = models.ForeignKey(Materia, on_delete=models.CASCADE, related_name='argomenti')
@@ -17,6 +20,10 @@ class Argomento(models.Model):
 
     def __str__(self):
         return self.argomento
+
+    class Meta:
+        verbose_name = 'Argomento'
+        verbose_name_plural = 'Argomenti'
 
 class ImmaginiArgomento(models.Model):
     teoria = models.ForeignKey(Argomento, on_delete=models.CASCADE, related_name='immagini')
