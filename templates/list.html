@@ -10,7 +10,7 @@
 <div class="container">
   <h2>Parte teorica</h2>
 
-  <p> {{ teoria.teoria }} </p>
+  <p> {{ teoria.teoria | safe }} </p>
 
   <div class='lista-immagini'>
     <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-3">  
@@ -19,7 +19,7 @@
         <div class="card">
           <div class="card-body">
             <a data-fancybox='gallery' href='{{ imag.image.url }}'><img src='{{ imag.image.url }}'></a>
-            <span>{{ imag.didascalia }}</span>
+            <span>{{ imag.didascalia | safe}}</span>
           </div>
         </div>
       </div>
