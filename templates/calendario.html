@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-5 row-cols-xl-5" id='div-calendario'>
+    {% for object in object_list %}
+    <div class="col">
+        <div class="card" id='card-calendario'>
+          <div class="card-body">
+            {% if object.status == 'Today' %}
+              <a href="{{object.link}}">
+                <img src='{{object.scienziato.url}}'>
+              </a>
+            {% endif %}
+            {% if object.status == 'Not today' %}
+              <img src='{{object.img_default.url}}'>
+            {% endif %}    
+            <span class='data-calendario'> {{object.giorno}} dicembre </span>   
+            {% if object.status == 'Today' %}
+              <a href="{{object.link}}">
+                <h5 class="card-title">{{object.nome}}</h5>
+              </a>
+            {% endif %}   
+          </div>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}
