@@ -18,5 +18,6 @@ class Admin(admin.ModelAdmin):
 
     actions = [make_visible, make_hidden]
 
+
     class Meta():
         model = Shop

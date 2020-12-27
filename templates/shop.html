@@ -3,6 +3,53 @@
 
 {% block content %}
 
+<style>
+
+.dropdown-submenu {
+    position:relative;
+}
+.dropdown-submenu>.dropdown-menu {
+    top:0;
+    left:100%;
+    margin-top:-6px;
+    margin-left:-1px;
+    -webkit-border-radius:0 6px 6px 6px;
+    -moz-border-radius:0 6px 6px 6px;
+    border-radius:0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+    display:block;
+}
+.dropdown-submenu>a:after {
+    display:block;
+    content:" ";
+    float:right;
+    width:0;
+    height:0;
+    border-color:transparent;
+    border-style:solid;
+    border-width:5px 0 5px 5px;
+    border-left-color:#cccccc;
+    margin-top:5px;
+    margin-right:-10px;
+}
+.dropdown-submenu:hover>a:after {
+    border-left-color:#ffffff;
+}
+.dropdown-submenu.pull-left {
+    float:none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left:-100%;
+    margin-left:10px;
+    -webkit-border-radius:6px 0 6px 6px;
+    -moz-border-radius:6px 0 6px 6px;
+    border-radius:6px 0 6px 6px;
+}
+
+</style>
+
+
 <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-5 row-cols-xl-5" id='div-calendario'>
     {% for object in object_list %}
     <div class="col">
@@ -17,18 +64,43 @@
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Prodotti
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        {%if object.link_tshirt%}
-                            <a class="dropdown-item" href='{{object.link_tshirt}}'> T-Shirt </a>
-                        {%endif%}
-                        {%if object.link_felpa%}
-                            <a class="dropdown-item" href='{{object.link_felpa}}'> Felpa </a>
-                        {%endif%}
-                        {%if object.link_cover%}
-                            <a class="dropdown-item" href='{{object.link_cover}}'> Cover </a>
-                        {%endif%}
-                    </div>
-                  </div>
+                    <ul class="dropdown-menu">
+                        <li class="menu-item dropdown dropdown-submenu">
+                            <a class="dropdown-toggle" data-toggle="dropdown">T-Shirt</a>
+                            <ul class="dropdown-menu">
+                                {% if object.unisex_tshirt %}<li><a class="dropdown-item"> Unisex</a></li>{%endif%}
+                                {% if object.uomo_tshirt %}<li><a class="dropdown-item"> Uomo</a></li>{%endif%}
+                                {% if object.donna_tshirt %}<li><a class="dropdown-item"> Donna</a></li>{%endif%}
+                            </ul>
+                        </li>
+                        <li class="menu-item dropdown dropdown-submenu">
+                            <a class="dropdown-toggle" data-toggle="dropdown">Felpa</a>
+                            <ul class="dropdown-menu">
+                                {% if object.unisex_felpa %}<li><a class="dropdown-item"> Unisex</a></li>{%endif%}
+                                {% if object.uomo_felpa %}<li><a class="dropdown-item"> Uomo</a></li>{%endif%}
+                                {% if object.donna_felpa %}<li><a class="dropdown-item"> Donna</a></li>{%endif%}
+                            </ul>
+                        </li>
+                        
+                    </ul>
+                    
+                    
+
+
+
+                    <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class='dropdown-item' ></a>
+                        <li class='dropdown-submenu'> 
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href='https://moteefe.com/{{object.slug}}?color=black&product=unisex-t-shirt'> Unisex</a></li>
+                                    <li><a class="dropdown-item" href='https://moteefe.com/{{object.slug}}?color=black&product=men-t-shirt'> Uomo</a></li>
+                                    <li><a class="dropdown-item" href='https://moteefe.com/{{object.slug}}?color=black&product=women-t-shirt'> Donna</a></li>
+                                </ul>
+                        </li>
+                        <a class="dropdown-item" href='{{object.link_felpa}}'> Felpa </a>
+                        <a class="dropdown-item" href='{{object.link_cover}}'> Cover </a>
+                    </div> -->
+                </div>
             </div>
         </div>
     </div>
