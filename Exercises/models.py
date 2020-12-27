@@ -44,7 +44,7 @@ class Esercizio(models.Model):
     
     risoluzione = models.TextField(help_text='Scrivere la risoluzione del problema in maniera chiara')
     
-    commento = models.TextField(help_text='Commentare il processo mentale che ha portato alla scelta di ciò che è stato caricato come "struttura" e nell\'eventuale meccanismo.')
+    commento = models.TextField(blank=True, help_text='Commentare il processo mentale che ha portato alla scelta di ciò che è stato caricato come "struttura" e nell\'eventuale meccanismo.')
     
     risultato = models.TextField(help_text='Evidenziare il risultato ottenuto dalla risoluzione delle equazioni.')
 
