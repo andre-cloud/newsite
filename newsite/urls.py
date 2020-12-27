@@ -21,7 +21,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Exercises.urls')),
-    path('calendario/', include('Calendario.urls'))
+    path('calendario', include('Calendario.urls')),
+    path('shop', include('Shop.urls')),
 ]
 
 if settings.DEBUG:

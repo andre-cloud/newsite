@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-5 row-cols-xl-5" id='div-calendario'>
+    {% for object in object_list %}
+    <div class="col">
+        <div class="card" id='card-shop'>
+            <div class='card-header'>
+                {{object.nome}}
+            </div>
+            <div class="card-body">
+                <img src='{{object.design.url}}'>
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Prodotti
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {%if object.link_tshirt%}
+                            <a class="dropdown-item" href='{{object.link_tshirt}}'> T-Shirt </a>
+                        {%endif%}
+                        {%if object.link_felpa%}
+                            <a class="dropdown-item" href='{{object.link_felpa}}'> Felpa </a>
+                        {%endif%}
+                        {%if object.link_cover%}
+                            <a class="dropdown-item" href='{{object.link_cover}}'> Cover </a>
+                        {%endif%}
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}
