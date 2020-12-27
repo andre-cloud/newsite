@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Exercises',
     'Calendario',
+    'Shop',
 ]
 
 MIDDLEWARE = [
